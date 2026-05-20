@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Magic 8 Ball</title>
+		<link rel="stylesheet" href="./css/style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+			rel="stylesheet" />
+	</head>
+	<body>
+		<h1>Ask the magic 8 ball a question!</h1>
+		<div id="bigContainer">
+			<div class="container">
+				<h2>Ask a question:</h2>
+				<input
+					type="text"
+					class="question"
+					placeholder="Type your question here..."
+					onkeypress="handleKeyPress(event)" />
+				<img
+					onclick="askQuestion()"
+					class="askButton"
+					src="./images/ball.png"
+					alt="Ask" />
+				<div id="answer" class="answerBox"></div>
+			</div>
+            <div class="container">
+                <h2>Add a response:</h2>
+                <input
+                    type="text"
+                    class="question"
+                    id="newAnswer"
+                    placeholder="Type a new response..."
+                />
+                <button onclick="addAnswer()" class="addAnswer">Add Response</button>
+            </div>
+			<div class="container">
+				<h2>History:</h2>
+				<div id="history"></div>
+			</div>
+		</div>
+		<script src="./js/script.js"></script>
+	</body>
+</html>

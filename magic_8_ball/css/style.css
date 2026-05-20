@@ -1,0 +1,139 @@
+.nunito {
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+body {
+    font-family: Nunito, sans-serif;
+    background-color: rgb(101, 115, 179);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.question {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: none;
+    margin-top: 20px;
+    background-color: rgb(217, 210, 210);
+}
+.askButton {
+    padding: 0px;
+    font-size: 16px;
+    border-radius: 100px;
+    border: none;
+    background-color: rgb(75, 78, 178);
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    margin-top: 50px;
+    transition: background-color 0.2s ease, box-shadow 0.1s ease, transform 0.1s ease;
+
+}
+.askButton:hover {
+    background-color: rgb(60, 63, 163);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+}
+.askButton:active {
+    background-color: rgb(50, 53, 153);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+    cursor: default;
+}
+img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+}
+#bigContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(255, 254, 254);
+    border-radius: 20px;
+    padding: 40px;
+    width: 250px;
+    height: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+.answerBox {
+    margin-top: 30px;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    color: rgb(75, 78, 178);
+    background-color: rgb(240, 240, 255);
+    border-radius: 10px;
+    padding: 20px;
+    border: 2px solid rgb(75, 78, 178);
+    min-width: 250px;
+    animation: fadeIn 0.5s ease;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+#history {
+    max-height: 400px;
+    overflow-y: auto;
+    width: 100%;
+    padding: 10px 0;
+}
+.historyItem {
+    background-color: rgb(230, 230, 250);
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: left;
+}
+.historyQuestion {
+    font-weight: 600;
+    color: rgb(75, 78, 178);
+    margin-bottom: 5px;
+}
+.historyAnswer {
+    color: rgb(60, 63, 163);
+    font-style: italic;
+}
+.addAnswer {
+    background-color: rgb(75, 78, 178);
+    color: rgb(255, 255, 255);
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.addAnswer:hover {
+    background-color: rgb(60, 63, 163);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+    transition: background-color 0.2s ease, box-shadow 0.1s ease, transform 0.1s ease;
+}
+.addAnswer:active {
+    background-color: rgb(50, 53, 153);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+    cursor: default;
+}
