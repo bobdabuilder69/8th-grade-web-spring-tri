@@ -1,0 +1,65 @@
+<!doctype html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="stylesheet" href="./css/style.css" />
+	<title>Sidney B CSS Demo</title>
+	<style>
+		#internal {
+			color: rgb(108, 92, 92);
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+		<h1>Sidney B. CSS demo</h1>
+		<p>
+			This is some text.
+			<span
+				><strong style="color: blue; width: fit-content"
+					>This is a span, it is an inline container used to mark up/style text.
+					In this case it is coloring the text.</strong
+				></span
+			>
+			This text is outside the span, so it is not colored. And everything in
+			this paragraph is contained in a div which gives it structure and allows
+			it to be centered using flex.
+		</p>
+		<p>Everything in red is effected by a class.</p>
+		<p id="internal">
+			This piece of code is styled using internal styling with an ID
+		</p>
+		<div id="sigma_div">
+			<h3 class="red">Here is an annoying use of CSS</h3>
+			<nav>
+				<ul>
+					<li class="red"><a href="#">Home</a></li>
+					<li>
+						<a href="./about.html">About</a>
+					</li>
+					<li class="red"><a href="./contact.html">Contact</a></li>
+				</ul>
+			</nav>
+		</div>
+		<button onclick="(randomColor(), changeBackgroundColor())">
+			Change background color?
+		</button>
+		<img src="./images/cookie.jpg">
+	</div>
+
+	<script>
+		const randomColor = () => {
+			const r = Math.floor(Math.random() * 256);
+			const g = Math.floor(Math.random() * 256);
+			const b = Math.floor(Math.random() * 256);
+			return `rgb(${r}, ${g}, ${b})`;
+		};
+		function changeBackgroundColor() {
+			document.documentElement.style.setProperty(
+				"--random-color",
+				randomColor(),
+			);
+		}
+	</script>
+</body>

@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./css/style.css" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+			rel="stylesheet" />
+		<script type="text/javascript" src="./js/script.js"></script>
+		<title>Document</title>
+	</head>
+	<body>
+		<h1>JavaScript Demo</h1>
+		<p>
+			This is a number guessing game. Click the button below to start playing!
+		</p>
+		<button onclick="showMessage()">Play the game!</button>
+		<p id="numberGuesser"></p>
+		<p id="counter"></p>
+		<button onclick="changeBackgroundColor()">Change Background color!</button>
+		<br />
+		<br />
+		<div class="dateTime">
+			<button onclick="showDate()">Whats the date?</button>
+			<button onclick="showTime()">Whats the time?</button>
+		</div>
+	</body>
+
+	<script>
+		function showDate() {
+			const currentDate = new Date();
+			const options = { year: "numeric", month: "long", day: "numeric" };
+			const formattedDate = currentDate.toLocaleDateString(undefined, options);
+			alert(`Today's date is: ${formattedDate}`);
+		}
+		function showTime() {
+			const currentTime = new Date();
+			const options = { hour: "2-digit", minute: "2-digit", second: "2-digit" };
+			const formattedTime = currentTime.toLocaleTimeString(undefined, options);
+			alert(`Current time is: ${formattedTime}`);
+		}
+	</script>
+</html>

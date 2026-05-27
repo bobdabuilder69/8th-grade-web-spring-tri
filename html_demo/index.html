@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+	<head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./css/style.css" />
+		<title>Sidney HTML Demo</title>
+	</head>
+	<body>
+        <div>
+		<h1>Welcome to WEB class</h1>
+		<h2>Today we will learn about HTML</h2>
+		<h2>Here is a list of some of the things we will cover:</h2>
+		<ul>
+			<li>Buttons</li>
+			<li>Paragraphs</li>
+			<li>Lists (unordered)</li>
+			<li>Images</li>
+			<li>Links</li>
+		</ul>
+		<button onclick="">Click Me!</button>
+		<p>This is a paragraph</p>
+		<p>
+			This is another paragraph with a
+			<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank"
+				>link</a
+			>
+		</p>
+        <img
+            src="./images/image.png"
+            alt="Smiley Face Emoji"
+            width="200"
+            height="200"
+        />
+        <h2>Here is an ordered list:</h2>   
+        <ol>
+            <li>First item</li>
+            <li>Second item</li>
+            <li>Third item</li>
+        </ol>
+        </div>
+	</body>
+</html>
+<script>
+	let count = 0;
+	const button = document.querySelector("button");
+	button.addEventListener("click", () => {
+		count++;
+		button.textContent = "You clicked me " + count + (count === 1 ? " time!" : " times!");
+		count > 5 ? (button.textContent = "Stop clicking me!") : null;
+	});
+</script>
