@@ -2,9 +2,10 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 export default defineConfig({
+    base: "/8th-grade-web-spring-tri/",
     plugins: [react()],
     build: {
-        outDir: "../dist",
+        outDir: "dist",
         emptyOutDir: true,
     },
     server: {

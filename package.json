@@ -11,8 +11,8 @@
     },
     "scripts": {
         "dev": "vite",
-        "start": "react-scripts start",
-        "build": "react-scripts build"
+        "build": "vite build",
+        "preview": "vite preview"
     },
     "devDependencies": {
         "@babel/core": "^7.29.7",
