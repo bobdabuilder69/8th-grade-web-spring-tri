@@ -1,0 +1,92 @@
+#newRequestTitle {
+    margin: auto;
+    padding-top: 10px;
+}
+#newRequestColumnContainer {
+    background-color: #a08e76;
+    border-radius: 25px;
+    padding: 20px;
+    margin-top: 10px;
+    width: 80vw;
+    min-height: 39vh;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
+    margin-bottom: 20px;
+}
+.newRequestForm {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+    width: 50%;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+#newRequestTitleInput {
+    border-radius: 4px;
+    border: 1px solid #000000;
+    margin-bottom: 40px;
+}
+textarea {
+    resize: none;
+    height: 25vh;
+    width: 110%;
+    border-radius: 10px;
+    border: solid 1px #000000;
+    margin-bottom: 20px;
+}
+label {
+    font-size: 10px;
+    padding: none;
+    margin: none;
+    width: fit-content;
+}
+
+#includeNameContainer {
+    display: flex;
+    justify-content: center;
+}
+.includeNameRadio {
+    margin: -20px;
+    padding: none;
+    width: fit-content;
+}
+@media (width < 600px) {
+    #newRequestColumnContainer {
+        width: 90vw;
+        min-height: 40vh;
+        padding: 10px;
+    }
+    .newRequestForm {
+        width: 80%;
+    }
+}
+@media (width > 2000px) {
+    #newRequestContainer {
+        transform: scale(1.1);
+        transform-origin: top;
+    }
+}
+input[type="datetime-local"] {
+    border-radius: 4px;
+    border: 1px solid #000000;
+    padding: 5px;
+}
+input[type="datetime-local"]::-webkit-calendar-picker-indicator {
+    filter: invert(33%) sepia(18%) saturate(1478%) hue-rotate(361deg)
+        brightness(91%) contrast(100%);
+    cursor: pointer;
+}
+#submitRequestButton {
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
+}
+#timeEstimate {
+    margin-bottom: 0px;
+    padding: 0px;
+
+}
