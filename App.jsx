@@ -4,7 +4,7 @@ import SignUp from "./src/SignUp/SignUp.jsx";
 import MyNeighborhood from "./src/MyNeighborhood/MyNeighborhood.jsx";
 import MyNeighborhoodDetails from "./src/MyNeighborhoodDetails/MyNeighborhoodDetails.jsx";
 import NewRequest from "./src/NewRequest/NewRequest.jsx";
-import ProtectedRoute from "./src/Functions/protectedroute.jsx";
+import ProtectedRoute from "./src/Functions/ProtectedRoute.jsx";
 
 export default function App() {
     return (
