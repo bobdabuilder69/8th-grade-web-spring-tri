@@ -160,6 +160,7 @@ body {
     width: 100%;
     border-radius: 10px;
     z-index: 1;
+    overflow: hidden;
 }
 
 #newRequest {
