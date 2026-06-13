@@ -14,29 +14,23 @@ export default function MyNeighborhood() {
     const [loading, setLoading] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
 
-    const redirectUrl = `${window.location.origin}/8th-grade-web-spring-tri/final_project/`;
+    // --- THE SMART REDIRECT ---
+    const isLocalhost = window.location.hostname === "localhost"
 
-    useEffect(() => {
-        const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-            if (event === "SIGNED_IN" || event === "PASSWORD_RECOVERY") {
-                console.log("Magic link or reset caught! Redirecting...");
-                navigate("/myneighborhooddetails");
-            }
-        });
 
-        return () => subscription.unsubscribe();
-    }, [navigate]);
+    const baseUrl = isLocalhost
+        ? "http://localhost:5173/"
+        : "https://bobdabuilder69.github.io/8th-grade-web-spring-tri/final_project/";
 
     const handleEmailChange = (e) => setEmailInput(e.target.value);
     const handlePasswordChange = (e) => setPasswordInput(e.target.value);
 
-    // --- 1. Standard Password Login ---
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
         setMessage("");
         setLoading(true);
-        
+
         const normalizedEmail = emailInput.trim().toLowerCase();
 
         if (!normalizedEmail || !passwordInput) {
@@ -46,7 +40,7 @@ export default function MyNeighborhood() {
         }
 
         const loggedInUser = await loginUser(normalizedEmail, passwordInput);
-        
+
         if (!loggedInUser) {
             setError("Incorrect email or password.");
             setLoading(false);
@@ -62,7 +56,7 @@ export default function MyNeighborhood() {
     const handleMagicLink = async () => {
         setError("");
         setMessage("");
-        
+
         const normalizedEmail = emailInput.trim().toLowerCase();
         if (!normalizedEmail) {
             setError("Please enter your email first to send a Magic Link.");
@@ -73,8 +67,9 @@ export default function MyNeighborhood() {
         const { error } = await supabase.auth.signInWithOtp({
             email: normalizedEmail,
             options: {
-                emailRedirectTo: redirectUrl
-            }
+
+                emailRedirectTo: baseUrl,
+            },
         });
 
         if (error) {
@@ -88,7 +83,7 @@ export default function MyNeighborhood() {
     const handleForgotPassword = async () => {
         setError("");
         setMessage("");
-        
+
         const normalizedEmail = emailInput.trim().toLowerCase();
         if (!normalizedEmail) {
             setError("Please enter your email first to reset your password.");
@@ -96,14 +91,17 @@ export default function MyNeighborhood() {
         }
 
         setLoading(true);
-        const { error } = await supabase.auth.resetPasswordForEmail(normalizedEmail, {
-            redirectTo: redirectUrl
-        });
+        const { error } = await supabase.auth.resetPasswordForEmail(
+            normalizedEmail,
+            {
+                redirectTo: `${baseUrl}?reset=true`,
+            },
+        );
 
         if (error) {
             setError(error.message);
         } else {
-            setMessage("✉️ Password reset instructions sent to your email.");
+            setMessage("Password reset instructions sent to your email.");
         }
         setLoading(false);
     };
@@ -115,11 +113,15 @@ export default function MyNeighborhood() {
             <button onClick={() => navigate("/signup")}>
                 Please register here
             </button>
-            
+
             <h2>Or Enter Email and Password Below:</h2>
-            
-            {message && <p style={{ color: "green", fontWeight: "bold" }}>{message}</p>}
-            {error && <p style={{ color: "red", fontWeight: "bold" }}>{error}</p>}
+
+            {message && (
+                <p style={{ color: "green", fontWeight: "bold" }}>{message}</p>
+            )}
+            {error && (
+                <p style={{ color: "red", fontWeight: "bold" }}>{error}</p>
+            )}
 
             <form onSubmit={handleSubmit}>
                 <input
@@ -145,31 +147,55 @@ export default function MyNeighborhood() {
                 />
                 <br></br>
 
-                <button type="submit" className={styles.button} disabled={loading}>
+                <button
+                    type="submit"
+                    className={styles.button}
+                    disabled={loading}
+                >
                     {loading ? "Processing..." : "Login"}
                 </button>
             </form>
 
-            <div style={{ marginTop: "20px", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
+            <div
+                style={{
+                    marginTop: "20px",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    gap: "10px",
+                }}
+            >
                 <p style={{ margin: "5px 0", fontStyle: "italic" }}>- or -</p>
-                
-                <button 
-                    onClick={handleMagicLink} 
+
+                <button
+                    onClick={handleMagicLink}
                     disabled={loading}
-                    style={{ background: "transparent", border: "1px solid #ccc", padding: "5px 15px", cursor: "pointer" }}
+                    style={{
+                        background: "transparent",
+                        border: "1px solid #ccc",
+                        padding: "5px 15px",
+                        cursor: "pointer",
+                    }}
                 >
                     Send Magic Link
                 </button>
-                
-                <button 
-                    onClick={handleForgotPassword} 
+
+                <button
+                    onClick={handleForgotPassword}
                     disabled={loading}
-                    style={{ background: "transparent", border: "none", textDecoration: "underline", color: "blue", cursor: "pointer", fontSize: "0.9em" }}
+                    style={{
+                        background: "transparent",
+                        border: "none",
+                        textDecoration: "underline",
+                        color: "blue",
+                        cursor: "pointer",
+                        fontSize: "0.9em",
+                    }}
                 >
                     Forgot Password?
                 </button>
             </div>
-            
+
             {isAnimating && <div className={styles.sliderR}></div>}
         </div>
     );
