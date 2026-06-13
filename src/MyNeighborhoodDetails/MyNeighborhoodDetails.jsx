@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import BackButton from "../Functions/BackButton";
-import "./MyNeighborHoodDetails.css";
+import "./MyNeighborhoodDetails.css";
 import {
     getUserByEmail,
     updateUserRadius,
