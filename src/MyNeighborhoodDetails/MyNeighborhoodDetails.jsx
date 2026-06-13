@@ -302,7 +302,7 @@ export default function MyNeighborhoodDetails() {
                             <input
                                 className="slider"
                                 type="range"
-                                min="200"
+                                min="100"
                                 max="20000"
                                 value={radius}
                                 onChange={(e) =>
