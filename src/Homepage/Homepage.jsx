@@ -1,19 +1,26 @@
 import React, { useEffect } from "react";
 import "./Homepage.css";
 import { useNavigate } from "react-router-dom";
-import supabase from "../services/supabase"; 
+import supabase from "../services/supabase";
 
 function Homepage() {
-
     const navigate = useNavigate();
 
-
     useEffect(() => {
+
+        const isRecovery = window.location.href.includes("type=recovery");
+
         const {
             data: { subscription },
         } = supabase.auth.onAuthStateChange((event, session) => {
-            if (event === "SIGNED_IN" || event === "PASSWORD_RECOVERY") {
-                console.log("Magic link or reset caught! Redirecting...");
+
+            if (event === "PASSWORD_RECOVERY" || (event === "SIGNED_IN" && isRecovery)) {
+                console.log("Password reset caught. Sending to update page...");
+                navigate("/UpdatePassword");
+            } 
+
+            else if (event === "SIGNED_IN" && !isRecovery) {
+                console.log("Magic link caught. Sending to details...");
                 navigate("/myneighborhooddetails");
             }
         });
