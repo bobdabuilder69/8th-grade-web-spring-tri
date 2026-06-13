@@ -14,7 +14,8 @@ export default function MyNeighborhood() {
     const [loading, setLoading] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
 
-    // --- THE SMART REDIRECT ---
+
+    
     const isLocalhost = window.location.hostname === "localhost"
 
 
