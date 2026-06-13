@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Homepage.css";
 import { useNavigate } from "react-router-dom";
+import supabase from "../services/supabase"; 
 
 function Homepage() {
+
+    const navigate = useNavigate();
+
+
     useEffect(() => {
         const {
             data: { subscription },
@@ -16,38 +21,6 @@ function Homepage() {
         return () => subscription.unsubscribe();
     }, [navigate]);
 
-    const handleEmailChange = (e) => setEmailInput(e.target.value);
-    const handlePasswordChange = (e) => setPasswordInput(e.target.value);
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        setError("");
-        setMessage("");
-        setLoading(true);
-
-        const normalizedEmail = emailInput.trim().toLowerCase();
-
-        if (!normalizedEmail || !passwordInput) {
-            setError("Please enter both email and password.");
-            setLoading(false);
-            return;
-        }
-
-        const loggedInUser = await loginUser(normalizedEmail, passwordInput);
-
-        if (!loggedInUser) {
-            setError("Incorrect email or password.");
-            setLoading(false);
-            return;
-        }
-
-        setIsAnimating(true);
-        setTimeout(() => {
-            navigate("/myneighborhooddetails");
-        }, 500);
-    };
-
-    const navigate = useNavigate();
     return (
         <div>
             <h1>NeighborLink</h1>
