@@ -1,0 +1,450 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    margin: 0;
+    padding: 0;
+    padding-bottom: 20px;
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f5d6ad;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container .heading {
+    margin-top: 0;
+    padding-top: 10px;
+    font-family: "Quicksand", sans-serif;
+    color: #5a4a3a;
+}
+
+#columnMaker {
+    display: flex;
+    justify-content: center;
+    gap: 2vw;
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    height: 80vh;
+}
+
+#mapContainer {
+    background-color: #a08e76;
+    border-radius: 25px;
+    padding: 20px;
+    margin-top: 10px;
+    width: 40vw;
+    box-sizing: border-box;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    height: 70vh;
+}
+
+.columnContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+    width: 40vw;
+    margin-bottom: 20px;
+    height: 70vh;
+}
+
+.columnRowContainer {
+    background-color: #a08e76;
+    border-radius: 25px;
+    padding: 20px;
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    position: relative;
+    height: 33vh;
+
+}
+.columnRowContainerNearby {
+    background-color: #a08e76;
+    border-radius: 25px;
+    padding: 20px;
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-sizing: border-box;
+    position: relative;
+    height: 65vh;
+
+}
+.title {
+    color: white;
+    font-family: "Quicksand", sans-serif;
+    font-size: 1.5em; /* Larger title */
+    font-weight: 700;
+    text-align: center;
+    margin: 0 0 10px 0;
+    border-bottom: 1px solid rgba(215, 215, 215, 0.2);
+    padding-bottom: 10px;
+}
+
+.myRequestContainer,
+.nearbyRequestContainer {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+
+}
+
+.myRequestItem,
+.nearbyRequestItem {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 12px 15px;
+    color: white;
+    font-family: "Quicksand", sans-serif;
+    line-height: 1.6;
+    transition: background-color 0.2s;
+    
+}
+
+.nearbyRequestItem:hover {
+    background-color: rgba(255, 255, 255, 0.35);
+}
+
+.myRequestItem strong,
+.nearbyRequestItem strong {
+    font-size: 1em;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.myRequestItem span,
+.nearbyRequestItem span {
+    font-size: 0.88em;
+    opacity: 0.9;
+    display: block;
+}
+
+.myRequestItem small,
+.nearbyRequestItem small {
+    font-size: 0.78em;
+    opacity: 0.75;
+    display: block;
+    margin-top: 4px;
+}
+
+
+.columnRowContainer > p {
+    color: rgba(255, 255, 255, 0.8);
+    font-family: "Quicksand", sans-serif;
+    font-size: 0.95em;
+    text-align: center;
+    margin-top: 20px;
+
+}
+
+#map {
+    height: 50vh;
+    width: 100%;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+#newRequest {
+    border: none;
+    border-radius: 50%;
+    background-color: #f5d903;
+    color: #a08e76;
+    font-size: 1.5em;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    top: 4px;
+    right: 18px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition:
+        background-color 0.2s,
+        transform 0.15s;
+    padding: 0;
+    line-height: 1;
+}
+
+#newRequest:hover {
+    background-color: #ffe5c3;
+    transform: scale(1.1);
+}
+
+.sliderL {
+    height: 100vh;
+    width: 0%;
+    background-color: rgb(254, 250, 233);
+    position: fixed;
+    top: 0;
+    right: -10%;
+    z-index: 9999;
+    animation: sliderLeft 1s ease-out forwards;
+    border-radius: 100px;
+}
+
+@keyframes sliderLeft {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 200%;
+    }
+}
+
+.slider {
+    width: 15vw;
+    margin-top: 15px;
+}
+
+/* EDIT REQUEST STYLES dont ask why some things are capatalized i installed a weird extension and had to remove it*/
+.Overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+}
+
+.Card {
+    background: #a08e76;
+    border-radius: 20px;
+    padding: 32px;
+    min-width: 50vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px; /* Spacing out the elements */
+    box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+    animation: popIn 0.2s ease-out;
+    box-sizing: border-box;
+}
+.Card::-webkit-scrollbar {
+    display: none;
+}
+.myRequestContainer::-webkit-scrollbar {
+    display: none;
+}
+.nearbyRequestContainer::-webkit-scrollbar {
+    display: none;
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+.editButton {
+    background: rgba(255, 255, 255, 0.25);
+    border: none;
+    border-radius: 12px;
+    padding: 8px 12px;
+    color: white;
+    font-family: "Quicksand", sans-serif;
+    font-size: 0.9em;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background-color 0.2s,
+        transform 0.15s;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.label {
+    color: #f5d6ad;
+    font-family: "Quicksand", sans-serif;
+    font-size: 0.9em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.editInput,
+.editTextarea {
+    width: 50%;
+    box-sizing: border-box;
+    padding: 12px 16px;
+    border-radius: 12px;
+    border: 2px solid transparent;
+    background: rgba(255, 255, 255, 0.9);
+    font-family: "Quicksand", sans-serif;
+    font-size: 1rem;
+    color: #3a2e22;
+    outline: none;
+    transition: all 0.2s;
+}
+
+.editTextarea {
+    resize: none;
+    min-height: 100px;
+    width: 80%;
+}
+
+.editRow {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.editRow .formGroup {
+    flex: 1 1 0%;
+    min-width: 0;
+}
+
+.rangeInput {
+    width: 50%;
+    margin-top: 8px;
+    accent-color: #f5d6ad;
+    cursor: pointer;
+}
+
+.editActions {
+    display: flex;
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.saveButton,
+.cancelButton,
+.deleteButton {
+    flex: 1;
+    padding: 12px 0;
+    border-radius: 12px;
+    border: none;
+    font-family: "Quicksand", sans-serif;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.saveButton {
+    background: #6dbf8a;
+}
+.saveButton:hover {
+    background: #52a872;
+    transform: translateY(-2px);
+}
+.cancelButton {
+    background: rgba(255, 255, 255, 0.25);
+}
+.cancelButton:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+.deleteButton {
+    background: #e07070;
+}
+.deleteButton:hover {
+    background: #c85555;
+    transform: translateY(-2px);
+}
+
+.acceptRequestButton {
+    background: rgba(255, 255, 255, 0.25);
+    border: none;
+    border-radius: 12px;
+    position: relative;
+    display: inline-block;
+    padding: 8px 12px;
+    color: white;
+    font-family: "Quicksand", sans-serif;
+    font-size: 0.9em;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background-color 0.2s,
+        transform 0.05s;
+}
+.acceptRequestButton:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-2px);
+}
+.acceptRequestButton:active {
+    transform: translateY(2px) scale(0.98);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.acceptRequestButton::before {
+    content: "";
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 1%;
+    height: 100%;
+    background: #6dbf8a;
+    border-radius: 12px;
+    opacity: 0;
+}
+.acceptRequestButton:focus::before {
+    animation: acceptActive 0.5s ease-out forwards;
+}
+.acceptRequestButtonFull {
+    background: rgba(124, 124, 124, 0.5);
+    cursor: not-allowed;
+    border: none;
+    border-radius: 12px;
+    position: relative;
+    display: inline-block;
+    padding: 8px 12px;
+    color: white;
+    font-family: "Quicksand", sans-serif;
+    font-size: 0.9em;
+    font-weight: 700;
+    box-shadow: none;
+    transition: background-color 0.2s, transform 0.05s;
+    pointer-events: none;
+}
+.acceptRequestButtonFull:hover {
+    background: rgba(124, 124, 124, 0.5);
+    transform: none;
+}
+
+
+@keyframes acceptActive {
+    0% {
+        width: 1%;
+        opacity: 0;
+    }
+    100% {
+        width: 100%;
+        opacity: 1;
+    }
+}
